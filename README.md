@@ -324,4 +324,4 @@ For issues, questions, or suggestions, please create an issue in the repository.
 
 ---
 
-**Built with ❤️ by EliteCart Team**
+**Built by Lokesh Reddy Kambham**
