@@ -98,7 +98,7 @@ const Home = () => {
                 <div className="p-4">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{product.name}</h3>
                   <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                    ${ (Number(product.price) || 0).toFixed(2) }
+                    ₹{ (Number(product.price) || 0).toFixed(2) }
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     {product.stock} in stock
