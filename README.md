@@ -152,7 +152,7 @@ Elite-Cart/
 
 6. **Run backend server**
    ```bash
-   python app/main.py
+   python run.py
    ```
    Server will run on `http://localhost:5000`
 
