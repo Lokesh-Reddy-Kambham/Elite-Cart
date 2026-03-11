@@ -75,11 +75,16 @@ const ProductList = () => {
           </button>
         </div>
 
+        {/* Mobile Filter Overlay */}
+        <div className="md:hidden">
+          <Filter onFilterChange={handleFilterChange} isOpen={filterOpen} onClose={() => setFilterOpen(false)} />
+        </div>
+
         {/* Main Content */}
-        <div className="flex gap-6">
-          {/* Filter - single instance used for desktop sidebar and mobile overlay */}
-          <div className="w-64">
-            <Filter onFilterChange={handleFilterChange} isOpen={filterOpen} onClose={() => setFilterOpen(false)} />
+        <div className="md:flex md:gap-6">
+          {/* Desktop Filter Sidebar */}
+          <div className="hidden md:block w-64 flex-shrink-0">
+            <Filter onFilterChange={handleFilterChange} isOpen={false} onClose={() => setFilterOpen(false)} />
           </div>
 
           {/* Products Grid */}
