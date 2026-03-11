@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Filter as FilterIcon } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Filter from '../components/Filter';
@@ -27,9 +27,21 @@ const ProductList = () => {
     fetchProducts();
   }, [filters]);
 
-  const handleFilterChange = (newFilters) => {
-    setFilters(newFilters);
-  };
+  const handleFilterChange = useCallback((newFilters) => {
+    setFilters((prevFilters) => {
+      const prevKeys = Object.keys(prevFilters);
+      const nextKeys = Object.keys(newFilters);
+
+      if (prevKeys.length === nextKeys.length) {
+        const unchanged = prevKeys.every((key) => prevFilters[key] === newFilters[key]);
+        if (unchanged) {
+          return prevFilters;
+        }
+      }
+
+      return newFilters;
+    });
+  }, []);
 
   const handleAddToCart = () => {
     setSuccessMessage('Product added to cart!');
@@ -65,7 +77,7 @@ const ProductList = () => {
 
         {/* Main Content */}
         <div className="flex gap-6">
-          {/* Filter — single instance used for desktop sidebar and mobile overlay */}
+          {/* Filter - single instance used for desktop sidebar and mobile overlay */}
           <div className="w-64">
             <Filter onFilterChange={handleFilterChange} isOpen={filterOpen} onClose={() => setFilterOpen(false)} />
           </div>
