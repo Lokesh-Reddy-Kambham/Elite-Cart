@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Menu, User, LogOut, Sun, Moon } from 'lucide-react';
+import { ShoppingCart, Menu, LogOut, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';

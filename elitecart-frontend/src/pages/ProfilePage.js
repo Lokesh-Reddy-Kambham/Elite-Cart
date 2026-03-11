@@ -39,7 +39,7 @@ const ProfilePage = () => {
     };
 
     fetchOrders();
-  }, [isAuthenticated, user, navigate]);
+  }, [isAuthenticated, user, navigate, logout]);
 
   if (!isAuthenticated) {
     return null;

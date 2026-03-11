@@ -7,18 +7,18 @@ const Filter = ({ onFilterChange, isOpen, onClose }) => {
   const [maxPrice, setMaxPrice] = React.useState('');
   const [inStock, setInStock] = React.useState(false);
 
-  const handleFilterChange = () => {
+  const handleFilterChange = React.useCallback(() => {
     onFilterChange({
       category: category || undefined,
       min_price: minPrice ? parseFloat(minPrice) : undefined,
       max_price: maxPrice ? parseFloat(maxPrice) : undefined,
       in_stock: inStock || undefined,
     });
-  };
+  }, [category, minPrice, maxPrice, inStock, onFilterChange]);
 
   React.useEffect(() => {
     handleFilterChange();
-  }, [category, minPrice, maxPrice, inStock]);
+  }, [handleFilterChange]);
 
   const categories = ['Men', 'Women', 'Unisex'];
 
