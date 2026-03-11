@@ -292,7 +292,7 @@ const CheckoutPage = () => {
                     {item.name} x {item.quantity}
                   </span>
                   <span className="font-semibold text-gray-900 dark:text-white">
-                    ${(((Number(item.price) || 0) * (Number(item.quantity) || 0))).toFixed(2)}
+                    ₹{(((Number(item.price) || 0) * (Number(item.quantity) || 0))).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -302,7 +302,7 @@ const CheckoutPage = () => {
             <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
               <div className="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Subtotal</span>
-                <span>${(Number(total) || 0).toFixed(2)}</span>
+                <span>₹{(Number(total) || 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Shipping</span>
@@ -310,11 +310,11 @@ const CheckoutPage = () => {
               </div>
               <div className="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Tax</span>
-                <span>${(Number(tax) || 0).toFixed(2)}</span>
+                <span>₹{(Number(tax) || 0).toFixed(2)}</span>
               </div>
               <div className="border-t border-gray-200 dark:border-gray-700 pt-2 flex justify-between text-xl font-bold text-gray-900 dark:text-white">
                 <span>Total</span>
-                <span>${(Number(grandTotal) || 0).toFixed(2)}</span>
+                <span>₹{(Number(grandTotal) || 0).toFixed(2)}</span>
               </div>
             </div>
           </div>
