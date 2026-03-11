@@ -2,6 +2,10 @@
 
 A complete, full-stack e-commerce application built with React, Flask, and MySQL.
 
+## Live Demo
+
+- https://elitecart-frontend.vercel.app
+
 ## 📋 Features
 
 ### Frontend
@@ -325,3 +329,4 @@ For issues, questions, or suggestions, please create an issue in the repository.
 ---
 
 **Built by Lokesh Reddy Kambham**
+
