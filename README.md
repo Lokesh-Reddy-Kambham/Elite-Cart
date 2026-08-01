@@ -1,6 +1,6 @@
 # EliteCart - Modern E-commerce Application
 
-A complete, full-stack e-commerce application built with React, Flask, and MySQL.
+A complete, full-stack e-commerce application built with React, Django, and MySQL.
 
 ## Live Demo
 
@@ -20,7 +20,7 @@ A complete, full-stack e-commerce application built with React, Flask, and MySQL
 - ✅ Modern UI with Tailwind CSS
 
 ### Backend
-- ✅ Flask REST API
+- ✅ Django REST Framework
 - ✅ JWT authentication
 - ✅ MySQL database
 - ✅ Product management (CRUD)
@@ -38,9 +38,10 @@ A complete, full-stack e-commerce application built with React, Flask, and MySQL
 - Axios
 
 ### Backend
-- Flask 2.3.3
-- Flask-JWT-Extended
-- Flask-CORS
+- Django 4.2
+- Django REST Framework
+- djangorestframework-simplejwt
+- django-cors-headers
 - MySQL Connector
 - Pydantic
 
@@ -88,21 +89,31 @@ Elite-Cart/
 │   └── .gitignore
 │
 ├── elitecart-backend/
-│   ├── app/
-│   │   ├── models/
-│   │   │   └── models.py
-│   │   ├── routes/
-│   │   │   ├── auth.py
-│   │   │   ├── products.py
-│   │   │   └── orders.py
-│   │   ├── schemas/
-│   │   │   └── schemas.py
-│   │   ├── main.py
-│   │   ├── database.py
-│   │   └── auth.py
+│   ├── config/
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   └── asgi.py
+│   ├── apps/
+│   │   ├── users/
+│   │   │   ├── models.py
+│   │   │   ├── views.py
+│   │   │   ├── urls.py
+│   │   │   └── serializers.py
+│   │   ├── products/
+│   │   │   ├── models.py
+│   │   │   ├── views.py
+│   │   │   ├── urls.py
+│   │   │   └── serializers.py
+│   │   └── orders/
+│   │       ├── models.py
+│   │       ├── views.py
+│   │       ├── urls.py
+│   │       └── serializers.py
 │   ├── requirements.txt
 │   ├── database.sql
 │   ├── .env.example
+│   ├── manage.py
 │   └── README.md
 │
 └── README.md
@@ -150,15 +161,25 @@ Elite-Cart/
      DB_PASSWORD=your_password
      DB_NAME=elitecart
      DB_PORT=3306
-     JWT_SECRET_KEY=your-secret-key-change-in-production
-     FLASK_ENV=development
+     SECRET_KEY=your-secret-key-change-in-production
+     DEBUG=True
      ```
 
-6. **Run backend server**
+6. **Run migrations**
    ```bash
-   python run.py
+   python manage.py migrate
    ```
-   Server will run on `http://localhost:5000`
+
+7. **Create superuser (admin)**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+8. **Run backend server**
+   ```bash
+   python manage.py runserver
+   ```
+   Server will run on `http://localhost:8000`
 
 ### Frontend Setup
 
@@ -174,7 +195,7 @@ Elite-Cart/
 
 3. **Create .env file** (optional)
    ```
-   REACT_APP_API_URL=http://localhost:5000/api
+   REACT_APP_API_URL=http://localhost:8000/api
    ```
 
 4. **Start development server**
@@ -188,6 +209,8 @@ Elite-Cart/
 ### Authentication
 - `POST /api/auth/signup` - Register new user
 - `POST /api/auth/login` - Login user
+- `POST /api/auth/token/` - Get JWT token
+- `POST /api/auth/token/refresh/` - Refresh JWT token
 
 ### Products
 - `GET /api/products` - Get all products with filters
@@ -284,13 +307,14 @@ colors: {
 ## 🐛 Troubleshooting
 
 ### Backend Issues
-- **Port 5000 already in use**: Change `port=5000` in `app/main.py`
+- **Port 8000 already in use**: Run on different port with `python manage.py runserver 8001`
 - **Database connection error**: Check `.env` file MySQL credentials
-- **JWT errors**: Ensure `JWT_SECRET_KEY` is set in `.env`
+- **JWT errors**: Ensure `SECRET_KEY` is set in `.env`
+- **Migrations error**: Run `python manage.py makemigrations` then `python manage.py migrate`
 
 ### Frontend Issues
-- **API not responding**: Ensure backend is running on port 5000
-- **CORS errors**: Check Flask CORS configuration in `app/main.py`
+- **API not responding**: Ensure backend is running on port 8000
+- **CORS errors**: Check Django CORS configuration in `config/settings.py`
 - **Dark mode not working**: Clear browser localStorage and refresh
 
 ## 📱 Browser Support
@@ -310,7 +334,7 @@ npm run build
 ```
 
 ### Backend (Heroku/PythonAnywhere)
-1. Create `Procfile` with `web: gunicorn app.main:app`
+1. Create `Procfile` with `web: gunicorn config.wsgi`
 2. Update database credentials for production
 3. Deploy using git or platform's dashboard
 
@@ -329,4 +353,3 @@ For issues, questions, or suggestions, please create an issue in the repository.
 ---
 
 **Built by Lokesh Reddy Kambham**
-
