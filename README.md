@@ -147,7 +147,7 @@ Elite-Cart/
 
 4. **Setup MySQL Database**
    - Open MySQL and create database:
-     ```bash
+     ```bash 
      mysql -u root -p < database.sql
      ```
    - Or manually import `database.sql` file using MySQL Workbench/phpMyAdmin
